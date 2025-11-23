@@ -21,16 +21,3 @@ export const productsRouter = new Elysia({
         id: z.string()
     })
 })
-
-//Пример запроса http://localhost:3000/api/products/search?input=iPhone
-//Вернет объекты у которых title содержит iPhone (например Apple iPhone 15, Iphone 11 pro max и тд)
-
-// .get("/search", async ({ query}) => {
-//     return await db.query.products.findMany({
-//         where: ilike(products.title, `%${query.input}%`)
-//     })
-// }, {
-//     query: z.object({
-//         input: z.string()
-//     })
-// })

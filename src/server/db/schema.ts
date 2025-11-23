@@ -47,8 +47,8 @@ export const productsRelations = relations(products, ({ many }) => ({
 
 export const favorites = pgTable("favorites", {
 	...commonFields,
-	userId: varchar({length: 255}).notNull().references(() => users.id),
-	productId: varchar({length: 255}).notNull().references(() => products.id),
+	userId: varchar("user_id",{length: 255}).notNull().references(() => users.id),
+	productId: varchar("product_id",{length: 255}).notNull().references(() => products.id),
 	addedAt:  timestamp("added_at").defaultNow()
 })
 
@@ -69,8 +69,8 @@ export const favoritesRelations = relations(favorites, ({ one }) => ({
 
 export const cart = pgTable("cart", {
 	...commonFields,
-	userId: varchar({length: 255}).notNull().references(() => users.id),
-	productId: varchar({length: 255}).notNull().references(() => products.id),
+	userId: varchar("user_id",{length: 255}).notNull().references(() => users.id),
+	productId: varchar("product_id",{length: 255}).notNull().references(() => products.id),
 	quantity: integer("quantity").notNull()
 })
 
