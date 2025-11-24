@@ -2,7 +2,8 @@ import Elysia from "elysia";
 import { isNull, eq } from "drizzle-orm";
 import { db } from "../../db";
 import { products } from "../../db/schema";
-import z from "zod";
+import { productSchema } from "@/src/lib/client/shared/schemas/products";
+import z from 'zod';
 
 export const productsRouter = new Elysia({
     prefix: "/products"
@@ -16,8 +17,17 @@ export const productsRouter = new Elysia({
     return await db.query.products.findFirst({
         where: eq(products.id, params.id)
     })
+})
+.post("/", async ({ body }) => {
+    return await db.insert(products).values(body).returning()
 }, {
+    body: productSchema
+})
+.put("/:id", async ({ params, body }) => {
+    return await db.update(products).set(body).where(eq(products.id, params.id)).returning()
+}, {
+    body: productSchema,
     params: z.object({
         id: z.string()
     })
-})
+});

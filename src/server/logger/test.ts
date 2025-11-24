@@ -16,11 +16,11 @@ import { createUser, getUsers, updateUser, deleteUser,
         const user4 = await createUser("Ольга", "olga@mail.com", new Date("1992-04-04"));
         const user5 = await createUser("Дмитрий", "dmitry@mail.com", new Date("1993-05-05"));
         
-        const product1 = await createProduct("tshirt.jpg", "Футболка", "Черная футболка");
-        const product2 = await createProduct("jeans.jpg", "Джинсы", "Синие джинсы");
-        const product3 = await createProduct("jacket.jpg", "Куртка", "Кожаная куртка");
-        const product4 = await createProduct("shoes.jpg", "Кроссовки", "Белые кроссовки");
-        const product5 = await createProduct("hat.jpg", "Кепка", "Красная кепка");
+        const product1 = await createProduct("tshirt.jpg", "Футболка", "Черная футболка", 1990);
+        const product2 = await createProduct("jeans.jpg", "Джинсы", "Синие джинсы", 4990);
+        const product3 = await createProduct("jacket.jpg", "Куртка", "Кожаная куртка", 12990);
+        const product4 = await createProduct("shoes.jpg", "Кроссовки", "Белые кроссовки", 8990);
+        const product5 = await createProduct("hat.jpg", "Кепка", "Красная кепка", 1490);
         
         console.log('Создано 5 пользователей и 5 товаров\n');
         

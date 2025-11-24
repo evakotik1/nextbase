@@ -33,8 +33,7 @@ export const products = pgTable("products", {
 	imageUrl: text("image_url"),
 	title: varchar({length: 255}).notNull(),
 	description: text("description"), 
-	createdAt: timestamp("created_at").defaultNow(),
-	deletedAt: timestamp("deleted_at"),
+	price: integer("price").notNull()
 });
 
 export const productsRelations = relations(products, ({ many }) => ({

@@ -29,11 +29,12 @@ export async function updateUser(userId: string, updateData: {name?: string, ema
 
 
 
-export async function createProduct(imageUrl:string, title:string, description: string) {
+export async function createProduct(imageUrl: string, title: string, description: string, price: number) {
     const created = await db.insert(products).values({
         imageUrl: imageUrl,
         title: title,
-        description: description
+        description: description,
+        price: price
     }).returning()
     return created[0]
 }

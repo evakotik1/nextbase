@@ -2,6 +2,7 @@ import Elysia from "elysia";
 import { isNull, eq, and } from "drizzle-orm";
 import { db } from "../../db";
 import { cart } from "../../db/schema";
+import { cartSchema } from "@/src/lib/client/shared/schemas/cart";
 import z from "zod";
 
 export const cartRouter = new Elysia({
@@ -22,3 +23,16 @@ export const cartRouter = new Elysia({
         userId: z.string()
     })
 })
+.post("/", async ({ body }) => {
+    return await db.insert(cart).values(body).returning()
+}, {
+    body: cartSchema
+})
+.put("/:id", async ({ params, body }) => {
+    return await db.update(cart).set(body).where(eq(cart.id, params.id)).returning()
+}, {
+    body: cartSchema,
+    params: z.object({
+        id: z.string()
+    })
+});
