@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1763384559720,
-      "tag": "0000_misty_wrecker",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1763384658141,
-      "tag": "0001_fresh_masque",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1763392791319,
-      "tag": "0002_absurd_warbound",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1763761733606,
-      "tag": "0003_abandoned_mandrill",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1764010295851,
-      "tag": "0004_amused_roxanne_simpson",
+      "when": 1764094419007,
+      "tag": "0000_quick_scorpion",
       "breakpoints": true
     }
   ]

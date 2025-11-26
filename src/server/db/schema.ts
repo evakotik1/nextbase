@@ -1,5 +1,6 @@
 import { integer, pgTable, varchar, text, timestamp, boolean } from "drizzle-orm/pg-core";
 import { sql, relations } from "drizzle-orm";
+export * from "./auth-schema";
 
 
 export const commonFields = {
@@ -13,18 +14,18 @@ export const commonFields = {
 	updatedAt: timestamp("updated_at").notNull().defaultNow(),
 };
 
-export const users = pgTable("users", {
-	// id: varchar({length: 255}).primaryKey().notNull().$defaultFn(() => Bun.randomUUIDv7()),
-	...commonFields,
-	name: varchar({length: 255}).notNull(),
-	email: varchar({ length: 255 }).notNull().unique(),
-	birthDate: timestamp("birth_date"),
-})
+// export const users = pgTable("users", {
+// 	// id: varchar({length: 255}).primaryKey().notNull().$defaultFn(() => Bun.randomUUIDv7()),
+// 	...commonFields,
+// 	name: varchar({length: 255}).notNull(),
+// 	email: varchar({ length: 255 }).notNull().unique(),
+// 	birthDate: timestamp("birth_date"),
+// })
 
-export const usersRelations = relations(users, ({ many }) => ({
-	favorites: many(favorites),
-	cart: many(cart),
-}));
+// export const usersRelations = relations(users, ({ many }) => ({
+// 	favorites: many(favorites),
+// 	cart: many(cart),
+// }));
 
 
 
@@ -46,41 +47,42 @@ export const productsRelations = relations(products, ({ many }) => ({
 
 export const favorites = pgTable("favorites", {
 	...commonFields,
-	userId: varchar("user_id",{length: 255}).notNull().references(() => users.id),
+	// userId: varchar("user_id",{length: 255}).notNull().references(() => users.id),
+	userId: varchar("user_id", { length: 255 }).notNull(),
 	productId: varchar("product_id",{length: 255}).notNull().references(() => products.id),
-	addedAt:  timestamp("added_at").defaultNow()
 })
 
-export const favoritesRelations = relations(favorites, ({ one }) => ({
-	user: one(users, {
-		fields: [favorites.userId],
-		references: [users.id]
-	}),
+// export const favoritesRelations = relations(favorites, ({ one }) => ({
+// 	user: one(users, {
+// 		fields: [favorites.userId],
+// 		references: [users.id]
+// 	}),
 
-	product: one(products, {
-		fields: [favorites.productId],
-		references: [products.id],
-	}),
-}));
+// 	product: one(products, {
+// 		fields: [favorites.productId],
+// 		references: [products.id],
+// 	}),
+// }));
 
 
 
 
 export const cart = pgTable("cart", {
 	...commonFields,
-	userId: varchar("user_id",{length: 255}).notNull().references(() => users.id),
+	// userId: varchar("user_id",{length: 255}).notNull().references(() => users.id),
+	userId: varchar("user_id", { length: 255 }).notNull(),
 	productId: varchar("product_id",{length: 255}).notNull().references(() => products.id),
 	quantity: integer("quantity").notNull()
 })
 
-export const cartRelations = relations(cart, ({ one }) => ({
-	user: one(users, {
-		fields: [cart.userId],
-		references: [users.id]
-	}),
+// export const cartRelations = relations(cart, ({ one }) => ({
+// 	user: one(users, {
+// 		fields: [cart.userId],
+// 		references: [users.id]
+// 	}),
 	
-	product: one(products, {
-		fields: [cart.productId],
-		references: [products.id],
-	}),
-}));
+// 	product: one(products, {
+// 		fields: [cart.productId],
+// 		references: [products.id],
+// 	}),
+// }));

@@ -3,7 +3,7 @@ import { isNull, eq, and } from "drizzle-orm";
 import { db } from "../../db";
 import { favorites } from "../../db/schema";
 import { favoritesSchema } from "@/src/lib/client/shared/schemas/favorites"; 
-import z from "zod";
+import z from "zod/v4";
 
 export const favoritesRouter = new Elysia({
     prefix: "/favorites"

@@ -3,7 +3,7 @@ import { isNull, eq, and } from "drizzle-orm";
 import { db } from "../../db";
 import { cart } from "../../db/schema";
 import { cartSchema } from "@/src/lib/client/shared/schemas/cart";
-import z from "zod";
+import z from "zod/v4";
 
 export const cartRouter = new Elysia({
     prefix: "/cart"
