@@ -4,10 +4,26 @@ import { db } from "../../db";
 import { cart } from "../../db/schema";
 import { cartSchema } from "@/src/lib/client/shared/schemas/cart";
 import z from "zod/v4";
+import { userServise } from "./user";
 
 export const cartRouter = new Elysia({
     prefix: "/cart"
 })
+.use(userServise)
+.get("/my-cart", async ({session}) => {
+    return await db.query.cart.findMany({
+        where: and(
+            eq(cart.userId, session!.user.id),
+            isNull(cart.deletedAt)
+        ),
+        // with: {
+        //     product: true
+        // }
+    })
+}, {
+    isSignedIn: true,
+})
+
 .get("/:userId", async ({params}) => {
     return await db.query.cart.findMany({
         where: and(

@@ -8,6 +8,20 @@
       "when": 1764170591472,
       "tag": "0000_quick_exodus",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1764241005907,
+      "tag": "0001_tough_ares",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1764248923805,
+      "tag": "0002_cheerful_layla_miller",
+      "breakpoints": true
     }
   ]
 }

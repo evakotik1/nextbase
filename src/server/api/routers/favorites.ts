@@ -4,10 +4,26 @@ import { db } from "../../db";
 import { favorites } from "../../db/schema";
 import { favoritesSchema } from "@/src/lib/client/shared/schemas/favorites"; 
 import z from "zod/v4";
+import { userServise } from "./user";
 
 export const favoritesRouter = new Elysia({
     prefix: "/favorites"
 })
+.use(userServise)
+.get("/my-favorites", async ({session}) => {
+    return await db.query.favorites.findMany({
+        where: and(
+            eq(favorites.userId, session!.user.id),
+            isNull(favorites.deletedAt)
+        ),
+        // with: {
+        //     product: true
+        // }
+    })
+}, {
+    isSignedIn: true,
+})
+
 .get("/:userId", async ({params}) => {
     return await db.query.favorites.findMany({
         where: and(
